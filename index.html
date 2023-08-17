@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Music Player</title>
+</head>
+
+<body id="screen" class="light">
+    <header class="header">
+        <i class="fa-solid fa-moon"></i>
+    </header>
+    <section class="main">
+        <div class="player__container">
+            <div class="player__song-info">
+                <img class="player__cover" alt="capa do album" src="./src/img/AlbumLosT.webp">
+                <h3 class="player__song-title">LosT</h3>
+                <p class="player__song-artist">Bring Me The Horizon</p>
+            </div>
+            <div class="player__controls">
+                <i class="fa-solid fa-volume-high"></i>
+                <i class="fa-solid fa-backward"></i>
+                <i class="fa-solid fa-circle-play"></i>
+                <i class="fa-solid fa-forward"></i> 
+                <i class="fa-solid fa-arrow-rotate-right"></i>
+            </div>
+            <div class="player__time">
+                <p class="player__time-start"></p>
+                <input type="range" value="0" max="1000" id="progress">
+                <p class="player__time-end"></p>
+            </div>
+        </div>
+    </section>
+
+    <script type="module" src="./app.js"></script>
+</body>
+
+</html>
