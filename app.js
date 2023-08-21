@@ -1,5 +1,5 @@
 import songs from "./modules/songs.js"
-const botaoPlay = document.querySelector(".fa-circle-play");
+import getMinutes from "./modules/getMinutes.js"
 const botaoAvancar = document.querySelector(".fa-forward");
 const botaoRetroceder = document.querySelector(".fa-backward");
 const album = document.querySelector(".player__song-info");
@@ -8,58 +8,12 @@ const timeStart = document.querySelector(".player__time-start");
 const timeEnd = document.querySelector(".player__time-end");
 const restartSong = document.querySelector(".fa-arrow-rotate-right");
 const muteSong = document.querySelector(".fa-volume-high");
-const playlist = document.querySelector(".player__playlist");
+const botaoPlay = document.querySelector(".fa-circle-play");
 
 let id = 0;
 let song = new Audio(`./src/audio/${songs[id]["name"]}.mp3`);
 song.volume = 0.2;
 
-botaoPlay.addEventListener("click", () => {
-    if (botaoPlay.classList.contains("fa-circle-play")) {
-        song.play();
-        botaoPlay.classList.remove("fa-circle-play");
-        botaoPlay.classList.add("fa-pause");
-    }
-    else {
-        song.pause();
-        botaoPlay.classList.remove("fa-pause");
-        botaoPlay.classList.add("fa-circle-play");
-    }
-
-})
-
-restartSong.addEventListener("click", () => {
-    if(song.currentTime > 0) {
-        song.currentTime = 0; 
-        song.play();   
-    }
-    
-})
-
-muteSong.addEventListener("click", () => {
-    if(song.volume > 0) {
-        song.volume = 0
-        muteSong.classList.remove("fa-volume-high");
-        muteSong.classList.add("fa-volume-xmark");
-    } else {
-        song.volume = 0.2
-        muteSong.classList.add("fa-volume-high"); 
-        muteSong.classList.remove("fa-volume-xmark");
-        
-    }
-})
-
-function getMinutes(SongTime){
-    var min = parseInt(parseInt(SongTime) / 60);
-    var sec = parseInt(SongTime % 60);
-    if (sec < 10) {
-      sec = "0" + sec
-    }
-    if (min < 10) {
-      min = "0" + min
-    }
-    return min + ":" + sec
-  }
 
 song.onloadedmetadata = () => {
     progressBar.max = song.duration;
@@ -67,6 +21,7 @@ song.onloadedmetadata = () => {
     timeStart.innerHTML = "00:00";
     timeEnd.innerHTML = songs[id]["duration"];
 }
+
 
 if (song.play) {
     setInterval(() => timeStart.innerHTML = getMinutes(song.currentTime), 100);
@@ -83,6 +38,50 @@ progressBar.onchange = () => {
     botaoPlay.classList.remove("fa-circle-play");
     botaoPlay.classList.add("fa-pause");
 }
+
+// Controles
+
+// Botão de Play
+
+botaoPlay.addEventListener("click", () => {
+    if (botaoPlay.classList.contains("fa-circle-play")) {
+        song.play();
+        botaoPlay.classList.remove("fa-circle-play");
+        botaoPlay.classList.add("fa-pause");
+    }
+    else {
+        song.pause();
+        botaoPlay.classList.remove("fa-pause");
+        botaoPlay.classList.add("fa-circle-play");
+    }
+
+})
+
+// Botão de Reiniciar a música
+
+restartSong.addEventListener("click", () => {
+    if(song.currentTime > 0) {
+        song.currentTime = 0; 
+        song.play();   
+    }    
+})
+
+// Botão de retirar o áudio da música
+
+muteSong.addEventListener("click", () => {
+    if(song.volume > 0) {
+        song.volume = 0
+        muteSong.classList.remove("fa-volume-high");
+        muteSong.classList.add("fa-volume-xmark");
+    } else {
+        song.volume = 0.2
+        muteSong.classList.add("fa-volume-high"); 
+        muteSong.classList.remove("fa-volume-xmark");
+        
+    }
+})
+
+// Botão de avançar para a próxima música
 
 botaoAvancar.addEventListener("click", () => {
     botaoPlay.classList.remove("fa-circle-play");
@@ -102,6 +101,8 @@ botaoAvancar.addEventListener("click", () => {
     song.volume = 0.2;
 
 })
+
+// Botão de voltar para a música anterior
 
 botaoRetroceder.addEventListener("click", () => {
     botaoPlay.classList.remove("fa-circle-play");
