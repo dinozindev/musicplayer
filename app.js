@@ -8,8 +8,6 @@ const timeStart = document.querySelector(".player__time-start");
 const timeEnd = document.querySelector(".player__time-end");
 const restartSong = document.querySelector(".fa-arrow-rotate-right");
 const muteSong = document.querySelector(".fa-volume-high");
-const darkMode = document.querySelector(".fa-moon");
-const screen = document.getElementById("screen");
 const playlist = document.querySelector(".player__playlist");
 
 let id = 0;
@@ -127,41 +125,7 @@ botaoRetroceder.addEventListener("click", () => {
     song.volume = 0.2;
 })
 
-// DARK MODE
 
-let darkModeLocalStorage;
-
-if(localStorage.getItem("dark-mode")) {
-    darkModeLocalStorage = localStorage.getItem("dark-mode")
-} else {
-    darkModeLocalStorage = "light";
-}
-
-if(darkModeLocalStorage == "dark") {
-    screen.classList.remove("light")
-    screen.classList.add("dark")
-    darkMode.classList.remove("fa-moon");
-    darkMode.classList.add("fa-sun");
-}
-
-localStorage.setItem("dark-mode", darkModeLocalStorage)
-
-darkMode.addEventListener("click", () => {
-    if(darkMode.classList.contains("fa-moon")) {
-        darkMode.classList.remove("fa-moon");
-        darkMode.classList.add("fa-sun");
-        screen.classList.remove("light") 
-        screen.classList.add("dark");
-        localStorage.setItem("dark-mode", "dark")
-     } else {
-        darkMode.classList.remove("fa-sun");
-        darkMode.classList.add("fa-moon");
-        screen.classList.remove("dark");
-        screen.classList.add("light");
-        localStorage.setItem("dark-mode", "light")
-     }
-    
-})
 
 
 
