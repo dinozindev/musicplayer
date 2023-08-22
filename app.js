@@ -14,6 +14,13 @@ let id = 0;
 let song = new Audio(`./src/audio/${songs[id]["name"]}.mp3`);
 song.volume = 0.2;
 
+album.innerHTML =
+    `
+    <img class="player__cover" alt="capa do album" src="./src/img/${songs[id]["album"]}">
+    <h3 class="player__song-title">${songs[id]["name"]}</h3>
+    <p class="player__song-artist">${songs[id]["artist"]}</p>
+`    
+
 
 song.onloadedmetadata = () => {
     progressBar.max = song.duration;
@@ -21,7 +28,6 @@ song.onloadedmetadata = () => {
     timeStart.innerHTML = "00:00";
     timeEnd.innerHTML = songs[id]["duration"];
 }
-
 
 if (song.play) {
     setInterval(() => timeStart.innerHTML = getMinutes(song.currentTime), 100);
@@ -60,10 +66,8 @@ botaoPlay.addEventListener("click", () => {
 // Botão de Reiniciar a música
 
 restartSong.addEventListener("click", () => {
-    if(song.currentTime > 0) {
-        song.currentTime = 0; 
-        song.play();   
-    }    
+    song.load();
+    song.play();   
 })
 
 // Botão de retirar o áudio da música
@@ -86,7 +90,12 @@ muteSong.addEventListener("click", () => {
 botaoAvancar.addEventListener("click", () => {
     botaoPlay.classList.remove("fa-circle-play");
     botaoPlay.classList.add("fa-pause");
-    id++
+    if(id === songs.length - 1) {
+        id = 0
+    } else {
+        id++
+    }
+    console.log(id)
     album.innerHTML =
         `
     <img class="player__cover" alt="capa do album" src="./src/img/${songs[id]["album"]}">
@@ -99,6 +108,7 @@ botaoAvancar.addEventListener("click", () => {
     timeEnd.innerHTML = songs[id]["duration"];
     song.play();
     song.volume = 0.2;
+    
 
 })
 
@@ -107,11 +117,16 @@ botaoAvancar.addEventListener("click", () => {
 botaoRetroceder.addEventListener("click", () => {
     botaoPlay.classList.remove("fa-circle-play");
     botaoPlay.classList.add("fa-pause");
+      if(id === 0) {
+       id = songs.length - 1
+    } else {
+      id--   
+    }
+    
     song.onloadedmetadata = () => {
         progressBar.max = song.duration;
         progressBar.value = song.currentTime;
     }
-    id--
     album.innerHTML =
         `
     <img class="player__cover" alt="capa do album" src="./src/img/${songs[id]["album"]}">
