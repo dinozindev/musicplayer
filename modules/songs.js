@@ -22,6 +22,22 @@
     duration: "04:22",
     data_artist: "Bring_Me_The_Horizon",
     data_name: "Avalanche"
+  },
+  {
+    name: "Kingslayer",
+    artist: "Bring Me The Horizon ft. BABYMETAL",
+    album: "AlbumKingslayer.webp",
+    duration: "03:40",
+    data_artist: "Bring_Me_The_Horizon_ft._BABYMETAL",
+    data_name: "Kingslayer"
+  },
+  {
+    name: "1x1",
+    artist: "Bring Me The Horizon ft. Nova Twins",
+    album: "AlbumKingslayer.webp",
+    duration: "03:29",
+    data_artist: "Bring_Me_The_Horizon_ft._Nova_Twins",
+    data_name: "1x1"
   }
 ]
 

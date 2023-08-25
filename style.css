@@ -17,6 +17,21 @@ body {
     transition: 0.25s; 
 }
 
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width:8px;
+}
+
+::-webkit-scrollbar-thumb {
+   background:  #c0c0c0;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--background-black);
+}
+
+
 .header {
     display:flex;
     justify-content: flex-end;
@@ -37,7 +52,7 @@ body {
 
 .player__playlist {
     width: 35%; 
-    height: 800px;  
+    height: 69vh;  
     overflow:auto;
     padding: 1rem;
     margin-bottom: 1rem;
@@ -91,7 +106,7 @@ body {
     align-items: center;
     justify-content: center;
     padding-bottom: 2rem; 
-    height: 60%;
+    height: 54%;
 }
 
 .player__container, .player__playlist, .playlist__item-container {
