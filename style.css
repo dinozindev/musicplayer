@@ -31,14 +31,51 @@ body {
     background: var(--background-black);
 }
 
+/* INPUT RANGE */
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+
+}
+input[type="range"]::-webkit-slider-runnable-track {
+    background: var(--background-black);
+    height: 0.5rem;
+    border-radius: 0.5rem;
+  }
+
+
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    margin-top: -6px;
+    background-color: grey;
+    height: 1.25rem;
+    width: 1.25rem;
+    border-radius: 100%;
+    border: var(--background-black) 1px solid;    
+ }
+
+
 
 .header {
     display:flex;
     justify-content: flex-end;
+    align-items: center;
+}
+
+.toggle-playlist-text {
+    font-weight: 700;
 }
 
 .fa-moon, .fa-sun {
     padding: 2.5rem;
+}
+
+.fa-toggle-on, .fa-toggle-off {
+    margin-left: 1rem;
 }
 
 .main {
@@ -51,12 +88,18 @@ body {
 /* PLAYLIST */
 
 .player__playlist {
+    position: relative;
     width: 35%; 
     height: 69vh;  
     overflow:auto;
     padding: 1rem;
     margin-bottom: 1rem;
 
+}
+
+.fa-circle-xmark {
+    position: absolute;
+    right: 0;
 }
 
 .playlist__item {
@@ -94,7 +137,15 @@ body {
     gap: 0.75rem;
 }
 
+/* PLAYLIST VISIBILITY */
 
+.playlist__block {
+    display:block;
+}
+
+.playlist__none {
+    display: none;
+}
 /* PLAYER */
 
 .player__container {
@@ -152,7 +203,7 @@ body {
     gap: 2.25rem;
 }
 
-.fa-backward, .fa-circle-play, .fa-forward, .fa-pause, .fa-moon, .fa-sun {
+.fa-backward, .fa-circle-play, .fa-forward, .fa-pause, .fa-moon, .fa-sun, .fa-toggle-on, .fa-toggle-off {
     font-size: 3rem;
 }
 
@@ -160,7 +211,7 @@ body {
     font-size: 2.25rem;
 }
 
-.fa-backward:hover, .fa-circle-play:hover, .fa-forward:hover, .fa-pause:hover, .fa-arrow-rotate-right:hover, .fa-volume-high:hover, .fa-volume-xmark:hover, .fa-moon:hover, .fa-sun:hover {
+.fa-backward:hover, .fa-circle-play:hover, .fa-forward:hover, .fa-pause:hover, .fa-arrow-rotate-right:hover, .fa-volume-high:hover, .fa-volume-xmark:hover, .fa-moon:hover, .fa-sun:hover, .fa-toggle-off:hover, .fa-toggle-on:hover {
     color: var(--grey-container);
     cursor: pointer;
     transition: 0.2s;
@@ -176,7 +227,7 @@ body {
 }
 
 .player__time-start, .player__time-end {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .player__time-start {

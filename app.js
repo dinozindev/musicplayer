@@ -12,6 +12,7 @@ const botaoPlayMain = document.getElementById("play-main");
 const playlist = document.querySelector(".playlist");
 
 
+
 let id = 0;
 let song = new Audio(`./src/audio/${songs[id]["name"]}.mp3`);
 song.volume = 0.2;
@@ -39,7 +40,7 @@ function criaItemPlaylist(song) {
                     <span class="playlist__item-duration">${song.duration}</span>
                 </div> 
             </div>
-           <i class="fa-solid fa-circle-play playlist-btn" song="./src/audio/${song.name}.mp3" name=${song.data_name} artist=${song.data_artist} album=${song.album} duration=${song.duration}></i>
+           <i class="fa-solid fa-circle-play playlist-btn" song="./src/audio/${song.name}.mp3" name=${song.data_name} artist=${song.data_artist} album=${song.album} duration=${song.duration} id=${song.id_song}></i>
         </div> 
     `
     playlist.appendChild(itemPlaylist)
@@ -49,36 +50,31 @@ function criaItemPlaylist(song) {
 setTimeout(() => {
     const botoes = document.querySelectorAll(".playlist-btn")
     botoes.forEach(btn => {
+        
         btn.addEventListener("click", () => {
             if (song.paused) {
-                btn.classList.remove("fa-circle-play");
-                btn.classList.add("fa-pause");
+                const songId = btn.getAttribute("id");
                 const audioSrc = btn.getAttribute('song');
                 const songArtistUnderline = btn.getAttribute('artist');
                 const songNameUnderline = btn.getAttribute('name');
                 const songNameFormated = songNameUnderline.replace(/_/g, ' ');
                 const songArtistFormated = songArtistUnderline.replace(/_/g, ' ');
                 const songAlbum = btn.getAttribute('album');
-                const songDuration = btn.getAttribute('duration');
-                if (id === songs.length - 1) {
-                    id = 0
-                } else {
-                    id++
-                }
+                const songDuration = btn.getAttribute('duration')
+                song = new Audio(audioSrc);
+                id = songId;
                 album.innerHTML =`
                 <img class="player__cover" alt="capa do album" src="./src/img/${songAlbum}">
                 <h3 class="player__song-title">${songNameFormated}</h3>
                 <p class="player__song-artist">${songArtistFormated}</p>
                 `
-                song = new Audio(audioSrc);
+                song.play()
                 setTimeout(() => progressBar.max = song.duration, 500);
                 timeEnd.innerHTML = songDuration;
-                song.play();
                 song.volume = 0.2;
             } else {
-                btn.classList.add("fa-circle-play");
-                btn.classList.remove("fa-pause");
-                song.pause();
+                song.pause()
+                
             }
         }
         )

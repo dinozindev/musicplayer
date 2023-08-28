@@ -1,5 +1,6 @@
  const songs = [
   { 
+    id_song: 0, 
     name: "LosT",
     artist: "Bring Me The Horizon",
     album: "AlbumLosT.webp",
@@ -7,7 +8,8 @@
     data_artist: "Bring_Me_The_Horizon",
     data_name: "LosT"
   },
-  {  
+  { 
+    id_song: 1,  
     name: "Bad Habits",
     artist: "Ed Sheeran (feat. Bring Me The Horizon)",
     album: "AlbumBadHabits.webp",
@@ -16,6 +18,7 @@
     data_name: "Bad_Habits"
   },
   { 
+    id_song: 2, 
     name: "Avalanche",
     artist: "Bring Me The Horizon",
     album: "AlbumAvalanche.jpg",
@@ -23,7 +26,8 @@
     data_artist: "Bring_Me_The_Horizon",
     data_name: "Avalanche"
   },
-  {
+  { 
+    id_song: 3,
     name: "Kingslayer",
     artist: "Bring Me The Horizon ft. BABYMETAL",
     album: "AlbumKingslayer.webp",
@@ -31,7 +35,8 @@
     data_artist: "Bring_Me_The_Horizon_ft._BABYMETAL",
     data_name: "Kingslayer"
   },
-  {
+  { 
+    id_song: 4,
     name: "1x1",
     artist: "Bring Me The Horizon ft. Nova Twins",
     album: "AlbumKingslayer.webp",
