@@ -7,7 +7,9 @@ Projeto "Music Player", tentando criar um player de músicas próprio.
 ## Screenshots
 
 ![App Screenshot](thumbnail.png)
+![App Screenshot](playlistlight.png)
 ![App Screenshot](thumbnaildark.png)
+![App Screenshot](playlistdark.png)
 
 ## Ferramentas utilizadas
 
