@@ -11,8 +11,6 @@ const muteSong = document.querySelector(".fa-volume-high");
 const botaoPlayMain = document.getElementById("play-main");
 const playlist = document.querySelector(".playlist");
 
-
-
 let id = 0;
 let song = new Audio(`./src/audio/${songs[id]["name"]}.mp3`);
 song.volume = 0.2;
@@ -46,35 +44,38 @@ function criaItemPlaylist(song) {
     playlist.appendChild(itemPlaylist)
 
 }
-
+ 
 setTimeout(() => {
     const botoes = document.querySelectorAll(".playlist-btn")
     botoes.forEach(btn => {
-        
         btn.addEventListener("click", () => {
             if (song.paused) {
-                const songId = btn.getAttribute("id");
-                const audioSrc = btn.getAttribute('song');
-                const songArtistUnderline = btn.getAttribute('artist');
-                const songNameUnderline = btn.getAttribute('name');
-                const songNameFormated = songNameUnderline.replace(/_/g, ' ');
-                const songArtistFormated = songArtistUnderline.replace(/_/g, ' ');
-                const songAlbum = btn.getAttribute('album');
-                const songDuration = btn.getAttribute('duration')
-                song = new Audio(audioSrc);
-                id = songId;
-                album.innerHTML =`
+                function playPlaylistSong() {
+                    const songId = btn.getAttribute("id");
+                    const audioSrc = btn.getAttribute('song');
+                    const songArtistUnderline = btn.getAttribute('artist');
+                    const songNameUnderline = btn.getAttribute('name');
+                    const songNameFormated = songNameUnderline.replace(/_/g, ' ');
+                    const songArtistFormated = songArtistUnderline.replace(/_/g, ' ');
+                    const songAlbum = btn.getAttribute('album');
+                    const songDuration = btn.getAttribute('duration')
+                    song = new Audio(audioSrc);
+                    id = songId;
+                    album.innerHTML = `
                 <img class="player__cover" alt="capa do album" src="./src/img/${songAlbum}">
                 <h3 class="player__song-title">${songNameFormated}</h3>
                 <p class="player__song-artist">${songArtistFormated}</p>
                 `
-                song.play()
-                setTimeout(() => progressBar.max = song.duration, 500);
-                timeEnd.innerHTML = songDuration;
-                song.volume = 0.2;
+                    song.play()
+                    botaoPlayMain.classList.remove("fa-circle-play");
+                    botaoPlayMain.classList.add("fa-pause");  
+                    setTimeout(() => progressBar.max = song.duration, 500);
+                    timeEnd.innerHTML = songDuration;
+                    song.volume = 0.2;
+                }
+                playPlaylistSong();
             } else {
-                song.pause()
-                
+                song.pause();
             }
         }
         )
@@ -93,10 +94,6 @@ if (song.play) {
     setInterval(() => timeStart.innerHTML = getMinutes(song.currentTime), 100);
     setInterval(() => { progressBar.value = song.currentTime }, 500)
 }
-
-// if (song.play) {
-//     setInterval(() => { console.log(progressBar.value, song.currentTime, progressBar.max) }, 500);
-// }
 
 progressBar.onchange = () => {
     song.play();
@@ -200,6 +197,10 @@ botaoRetroceder.addEventListener("click", () => {
     song.play();
     song.volume = 0.2;
 })
+
+// Slider Volume da música
+
+
 
 
 
